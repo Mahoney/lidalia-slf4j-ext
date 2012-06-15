@@ -316,7 +316,9 @@ public enum Level {
             // Do nothing
         }
     };
+
     private static final ImmutableSet<Level> ALL_LEVELS = immutableEnumSet(asList(values()));
+    private static final ImmutableSet<Level> ENABLABLE_LEVELS = makeEnablabeValues();
 
     abstract boolean isEnabled(Logger logger);
 
@@ -347,6 +349,10 @@ public enum Level {
     }
 
     public static ImmutableSet<Level> enablableValueSet() {
+        return ENABLABLE_LEVELS;
+    }
+
+    private static ImmutableSet<Level> makeEnablabeValues() {
         HashSet<Level> levels = newHashSet(values());
         levels.remove(OFF);
         return immutableEnumSet(levels);
