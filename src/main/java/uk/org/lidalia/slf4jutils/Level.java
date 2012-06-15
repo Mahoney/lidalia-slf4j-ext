@@ -1,13 +1,14 @@
 package uk.org.lidalia.slf4jutils;
 
+import com.google.common.collect.ImmutableSet;
 import org.slf4j.Logger;
 import org.slf4j.Marker;
 
 import java.util.HashSet;
-import java.util.Set;
 
+import static com.google.common.collect.Sets.immutableEnumSet;
 import static com.google.common.collect.Sets.newHashSet;
-import static java.util.Collections.unmodifiableSet;
+import static java.util.Arrays.asList;
 
 public enum Level {
 
@@ -315,6 +316,7 @@ public enum Level {
             // Do nothing
         }
     };
+    private static final ImmutableSet<Level> ALL_LEVELS = immutableEnumSet(asList(values()));
 
     abstract boolean isEnabled(Logger logger);
 
@@ -340,14 +342,13 @@ public enum Level {
 
     abstract void log(Logger logger, Marker marker, String message, Throwable throwable);
 
-    public static Set<Level> valueSet() {
-        HashSet<Level> levels = newHashSet(values());
-        return unmodifiableSet(levels);
+    public static ImmutableSet<Level> valueSet() {
+        return ALL_LEVELS;
     }
 
-    public static Set<Level> enablableValueSet() {
+    public static ImmutableSet<Level> enablableValueSet() {
         HashSet<Level> levels = newHashSet(values());
         levels.remove(OFF);
-        return unmodifiableSet(levels);
+        return immutableEnumSet(levels);
     }
 }
