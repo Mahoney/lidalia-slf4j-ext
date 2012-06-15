@@ -3,9 +3,15 @@ package uk.org.lidalia.slf4jutils;
 import org.slf4j.Logger;
 import org.slf4j.Marker;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import static com.google.common.collect.Sets.newHashSet;
+import static java.util.Collections.unmodifiableSet;
+
 public enum Level {
 
-    TRACE(LevelInts.TRACE_INT) {
+    TRACE {
         @Override
         boolean isEnabled(Logger logger) {
             return logger.isTraceEnabled();
@@ -56,7 +62,7 @@ public enum Level {
         }
     },
 
-    DEBUG(LevelInts.DEBUG_INT) {
+    DEBUG {
         @Override
         boolean isEnabled(Logger logger) {
             return logger.isDebugEnabled();
@@ -107,7 +113,7 @@ public enum Level {
         }
     },
 
-    INFO(LevelInts.INFO_INT) {
+    INFO {
         @Override
         boolean isEnabled(Logger logger) {
             return logger.isInfoEnabled();
@@ -157,7 +163,7 @@ public enum Level {
             logger.info(marker, message, throwable);         }
     },
 
-    WARN(LevelInts.WARN_INT) {
+    WARN {
         @Override
         boolean isEnabled(Logger logger) {
             return logger.isWarnEnabled();
@@ -208,7 +214,7 @@ public enum Level {
        }
     },
 
-    ERROR(LevelInts.ERROR_INT) {
+    ERROR {
         @Override
         boolean isEnabled(Logger logger) {
             return logger.isErrorEnabled();
@@ -259,7 +265,7 @@ public enum Level {
         }
     },
 
-    OFF(LevelInts.OFF_INT) {
+    OFF {
         @Override
         boolean isEnabled(Logger logger) {
             return false;
@@ -310,12 +316,6 @@ public enum Level {
         }
     };
 
-    private final int level;
-
-    private Level(int level) {
-        this.level = level;
-    }
-
     abstract boolean isEnabled(Logger logger);
 
     abstract void log(Logger logger, String message);
@@ -340,33 +340,14 @@ public enum Level {
 
     abstract void log(Logger logger, Marker marker, String message, Throwable throwable);
 
-    public boolean isTraceEnabled() {
-        return level == LevelInts.TRACE_INT;
+    public static Set<Level> valueSet() {
+        HashSet<Level> levels = newHashSet(values());
+        return unmodifiableSet(levels);
     }
 
-    public boolean isDebugEnabled() {
-        return level <= LevelInts.DEBUG_INT;
-    }
-
-    public boolean isInfoEnabled() {
-        return level <= LevelInts.INFO_INT;
-    }
-
-    public boolean isWarnEnabled() {
-        return level <= LevelInts.WARN_INT;
-    }
-
-    public boolean isErrorEnabled() {
-        return level <= LevelInts.ERROR_INT;
-    }
-
-    private static class LevelInts {
-        static final int TRACE_INT = 1;
-        static final int DEBUG_INT = 2;
-        static final int INFO_INT = 3;
-        static final int WARN_INT = 4;
-        static final int ERROR_INT = 5;
-        static final int OFF_INT = 6;
+    public static Set<Level> enablableValueSet() {
+        HashSet<Level> levels = newHashSet(values());
+        levels.remove(OFF);
+        return unmodifiableSet(levels);
     }
 }
-
