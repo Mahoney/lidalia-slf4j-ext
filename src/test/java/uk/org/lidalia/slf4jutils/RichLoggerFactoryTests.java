@@ -5,8 +5,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import uk.org.lidalia.slf4jext.Logger;
+import uk.org.lidalia.slf4jext.LoggerFactory;
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
@@ -15,21 +16,21 @@ import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import static uk.org.lidalia.test.Assert.assertNotInstantiable;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({LoggerFactory.class})
+@PrepareForTest({org.slf4j.LoggerFactory.class})
 public class RichLoggerFactoryTests {
 
-    Logger logger = mock(Logger.class);
+    org.slf4j.Logger logger = mock(org.slf4j.Logger.class);
 
     @Before
     public void setUp() {
-        mockStatic(LoggerFactory.class);
+        mockStatic(org.slf4j.LoggerFactory.class);
     }
 
     @Test
     public void getLoggerByString() throws Exception {
-        given(LoggerFactory.getLogger("loggername")).willReturn(logger);
+        given(org.slf4j.LoggerFactory.getLogger("loggername")).willReturn(logger);
 
-        RichLogger richLogger = RichLoggerFactory.getLogger("loggername");
+        Logger richLogger = LoggerFactory.getLogger("loggername");
         richLogger.debug("message");
 
         verify(logger).debug("message");
@@ -37,9 +38,9 @@ public class RichLoggerFactoryTests {
 
     @Test
     public void getLoggerByClass() throws Exception {
-        given(LoggerFactory.getLogger(Object.class)).willReturn(logger);
+        given(org.slf4j.LoggerFactory.getLogger(Object.class)).willReturn(logger);
 
-        RichLogger richLogger = RichLoggerFactory.getLogger(Object.class);
+        Logger richLogger = LoggerFactory.getLogger(Object.class);
         richLogger.debug("message");
 
         verify(logger).debug("message");
@@ -47,6 +48,6 @@ public class RichLoggerFactoryTests {
 
     @Test
     public void notInstantiable() throws Throwable {
-        assertNotInstantiable(RichLoggerFactory.class);
+        assertNotInstantiable(LoggerFactory.class);
     }
 }

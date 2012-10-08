@@ -3,11 +3,12 @@ package uk.org.lidalia.slf4jutils;
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import org.junit.Test;
-import org.slf4j.Logger;
 import org.slf4j.Marker;
 
 import java.lang.reflect.Method;
 import java.util.List;
+
+import uk.org.lidalia.slf4jext.Logger;
 
 import static java.util.Arrays.asList;
 import static org.junit.Assert.assertEquals;
@@ -18,18 +19,18 @@ import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.powermock.api.mockito.PowerMockito.mock;
-import static uk.org.lidalia.slf4jutils.Level.DEBUG;
-import static uk.org.lidalia.slf4jutils.Level.ERROR;
-import static uk.org.lidalia.slf4jutils.Level.INFO;
-import static uk.org.lidalia.slf4jutils.Level.OFF;
-import static uk.org.lidalia.slf4jutils.Level.TRACE;
-import static uk.org.lidalia.slf4jutils.Level.WARN;
+import static uk.org.lidalia.slf4jext.Level.DEBUG;
+import static uk.org.lidalia.slf4jext.Level.ERROR;
+import static uk.org.lidalia.slf4jext.Level.INFO;
+import static uk.org.lidalia.slf4jext.Level.OFF;
+import static uk.org.lidalia.slf4jext.Level.TRACE;
+import static uk.org.lidalia.slf4jext.Level.WARN;
 import static uk.org.lidalia.test.Values.uniqueValueFor;
 
 public class RichLoggerTests {
 
-    Logger decoratedLogger = mock(Logger.class);
-    RichLogger richLogger = new RichLogger(decoratedLogger);
+    org.slf4j.Logger decoratedLogger = mock(org.slf4j.Logger.class);
+    Logger richLogger = new Logger(decoratedLogger);
 
     Marker marker = mock(Marker.class);
     String message = "message";
@@ -41,7 +42,7 @@ public class RichLoggerTests {
 
     @Test
     public void richLoggerDelegatesAllLoggerMethodsToDecoratedLogger() throws Exception {
-        Method[] loggerMethods = Logger.class.getMethods();
+        Method[] loggerMethods = org.slf4j.Logger.class.getMethods();
 
         for (Method loggerMethod: loggerMethods) {
             Object[] args = buildParamsFor(loggerMethod);
