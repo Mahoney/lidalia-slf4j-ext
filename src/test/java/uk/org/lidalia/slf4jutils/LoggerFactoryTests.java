@@ -18,7 +18,7 @@ import static uk.org.lidalia.test.Assert.isNotInstantiable;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({org.slf4j.LoggerFactory.class})
-public class RichLoggerFactoryTests {
+public class LoggerFactoryTests {
 
     org.slf4j.Logger logger = mock(org.slf4j.Logger.class);
 

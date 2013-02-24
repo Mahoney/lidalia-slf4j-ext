@@ -27,7 +27,7 @@ import static uk.org.lidalia.slf4jext.Level.TRACE;
 import static uk.org.lidalia.slf4jext.Level.WARN;
 import static uk.org.lidalia.test.Values.uniqueValueFor;
 
-public class RichLoggerTests {
+public class LoggerTests {
 
     org.slf4j.Logger decoratedLogger = mock(org.slf4j.Logger.class);
     Logger richLogger = new Logger(decoratedLogger);
