@@ -11,8 +11,8 @@ import uk.org.lidalia.slf4jext.LoggerFactory;
 
 import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.powermock.api.mockito.PowerMockito.mock;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import static uk.org.lidalia.test.Assert.isNotInstantiable;
 
