@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ConventionalLevelHierarchy.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Lidalia Extensions to SLF4J</a> &gt; <a href="index.html" class="el_package">uk.org.lidalia.slf4jext</a> &gt; <span class="el_source">ConventionalLevelHierarchy.java</span></div><h1>ConventionalLevelHierarchy.java</h1><pre class="source lang-java linenums">package uk.org.lidalia.slf4jext;
+
+import com.google.common.collect.ImmutableSet;
+
+import static com.google.common.collect.Sets.immutableEnumSet;
+import static uk.org.lidalia.slf4jext.Level.DEBUG;
+import static uk.org.lidalia.slf4jext.Level.ERROR;
+import static uk.org.lidalia.slf4jext.Level.INFO;
+import static uk.org.lidalia.slf4jext.Level.TRACE;
+import static uk.org.lidalia.slf4jext.Level.WARN;
+
+/**
+ * The conventional hierarchical notion of Levels, where info being enabled implies warn and error being enabled, is not a
+ * requirement of the SLF4J API.  These constants are a shortcut if you wish to use traditional hierarchical setups.
+ */
+public final class ConventionalLevelHierarchy {
+
+    /**
+     * Levels that would be considered enabled in Log4J/Logback if a Logger was set to OFF.
+     */
+<span class="fc" id="L21">    public static final ImmutableSet&lt;Level&gt; OFF_LEVELS = ImmutableSet.of();</span>
+
+    /**
+     * Levels that would be considered enabled in Log4J/Logback if a Logger was set to ERROR.
+     */
+<span class="fc" id="L26">    public static final ImmutableSet&lt;Level&gt; ERROR_LEVELS = immutableEnumSet(ERROR);</span>
+
+    /**
+     * Levels that would be considered enabled in Log4J/Logback if a Logger was set to WARN.
+     */
+<span class="fc" id="L31">    public static final ImmutableSet&lt;Level&gt; WARN_LEVELS = immutableEnumSet(ERROR, WARN);</span>
+
+    /**
+     * Levels that would be considered enabled in Log4J/Logback if a Logger was set to INFO.
+     */
+<span class="fc" id="L36">    public static final ImmutableSet&lt;Level&gt; INFO_LEVELS = immutableEnumSet(ERROR, WARN, INFO);</span>
+
+    /**
+     * Levels that would be considered enabled in Log4J/Logback if a Logger was set to DEBUG.
+     */
+<span class="fc" id="L41">    public static final ImmutableSet&lt;Level&gt; DEBUG_LEVELS = immutableEnumSet(ERROR, WARN, INFO, DEBUG);</span>
+
+    /**
+     * Levels that would be considered enabled in Log4J/Logback if a Logger was set to TRACE.
+     */
+<span class="fc" id="L46">    public static final ImmutableSet&lt;Level&gt; TRACE_LEVELS = immutableEnumSet(ERROR, WARN, INFO, DEBUG, TRACE);</span>
+
+<span class="fc" id="L48">    private ConventionalLevelHierarchy() {</span>
+<span class="fc" id="L49">        throw new UnsupportedOperationException(&quot;Not instantiable&quot;);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.6.2.201302030002</span></div></body></html>

@@ -1,0 +1,11 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+Lidalia Extensions to SLF4J,uk.org.lidalia.slf4jext,Level.new Level() {...},0,20,0,0,0,13,0,13,0,13
+Lidalia Extensions to SLF4J,uk.org.lidalia.slf4jext,ConventionalLevelHierarchy,0,75,0,0,0,8,0,2,0,2
+Lidalia Extensions to SLF4J,uk.org.lidalia.slf4jext,Level.new Level() {...},0,68,0,0,0,23,0,13,0,13
+Lidalia Extensions to SLF4J,uk.org.lidalia.slf4jext,LoggerFactory,0,19,0,0,0,4,0,3,0,3
+Lidalia Extensions to SLF4J,uk.org.lidalia.slf4jext,Level.new Level() {...},0,68,0,0,0,23,0,13,0,13
+Lidalia Extensions to SLF4J,uk.org.lidalia.slf4jext,Level.new Level() {...},0,68,0,0,0,23,0,13,0,13
+Lidalia Extensions to SLF4J,uk.org.lidalia.slf4jext,Level.new Level() {...},0,68,0,0,0,22,0,13,0,13
+Lidalia Extensions to SLF4J,uk.org.lidalia.slf4jext,Logger,0,466,0,0,0,136,0,74,0,74
+Lidalia Extensions to SLF4J,uk.org.lidalia.slf4jext,Level.new Level() {...},0,68,0,0,0,23,0,13,0,13
+Lidalia Extensions to SLF4J,uk.org.lidalia.slf4jext,Level,5,93,0,0,0,14,1,6,1,6
