@@ -1,5 +1,0 @@
-Lidalia SLF4J Extensions
-
-  An extension to SLF4J allowing logging at a level determined at run, rather than compile, time via a Level enum.
-
-  See the {{{./apidocs/index.html}JavaDocs}} for documentation and the {{{./xref-test/index.html}Test Source}} for examples of usage.
