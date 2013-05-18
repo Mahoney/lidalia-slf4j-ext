@@ -10,6 +10,10 @@ import static com.google.common.collect.Sets.immutableEnumSet;
 import static com.google.common.collect.Sets.newHashSet;
 import static java.util.Arrays.asList;
 
+/**
+ * Enum modelling the logical levels implied by the way <a href="http://www.slf4j.org">SLF4J</a> has the same set of methods
+ * repeated with different names.
+ */
 public enum Level {
 
     TRACE {
@@ -344,10 +348,16 @@ public enum Level {
 
     abstract void log(Logger logger, Marker marker, String message, Throwable throwable);
 
+    /**
+     * @return an ImmutableSet containing the constants of this enum type
+     */
     public static ImmutableSet<Level> valueSet() {
         return ALL_LEVELS;
     }
 
+    /**
+     * @return an ImmutableSet containing the constants of this enum type other than OFF
+     */
     public static ImmutableSet<Level> enablableValueSet() {
         return ENABLABLE_LEVELS;
     }
