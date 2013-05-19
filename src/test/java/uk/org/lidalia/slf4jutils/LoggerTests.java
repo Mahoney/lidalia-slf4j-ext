@@ -2,7 +2,11 @@ package uk.org.lidalia.slf4jutils;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
+
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.slf4j.Marker;
 
 import java.lang.reflect.Method;
@@ -27,6 +31,7 @@ import static uk.org.lidalia.slf4jext.Level.TRACE;
 import static uk.org.lidalia.slf4jext.Level.WARN;
 import static uk.org.lidalia.test.Values.uniqueValueFor;
 
+@RunWith(JUnitParamsRunner.class)
 public class LoggerTests {
 
     org.slf4j.Logger decoratedLogger = mock(org.slf4j.Logger.class);
@@ -40,22 +45,21 @@ public class LoggerTests {
     Object[] args = new Object[] { arg1, arg2, arg3 };
     Throwable throwable = new Throwable();
 
+    public Object[] slf4jLoggerMethods() {
+        return org.slf4j.Logger.class.getMethods();
+    }
     @Test
-    public void richLoggerDelegatesAllLoggerMethodsToDecoratedLogger() throws Exception {
-        Method[] loggerMethods = org.slf4j.Logger.class.getMethods();
-
-        for (Method loggerMethod: loggerMethods) {
-            Object[] args = buildParamsFor(loggerMethod);
-            Class<?> returnType = loggerMethod.getReturnType();
-            if (returnType != void.class) {
-                Object result = uniqueValueFor(returnType);
-                given(loggerMethod.invoke(decoratedLogger, args)).willReturn(result);
-                assertEquals("result of " + loggerMethod, result, loggerMethod.invoke(richLogger, args));
-            } else {
-                loggerMethod.invoke(richLogger, args);
-                loggerMethod.invoke(verify(decoratedLogger), args);
-            }
-            reset(decoratedLogger);
+    @Parameters(method = "slf4jLoggerMethods")
+    public void richLoggerDelegatesLoggerMethodToDecoratedLogger(Method loggerMethod) throws Exception {
+        Object[] args = buildParamsFor(loggerMethod);
+        Class<?> returnType = loggerMethod.getReturnType();
+        if (returnType == void.class) {
+            loggerMethod.invoke(richLogger, args);
+            loggerMethod.invoke(verify(decoratedLogger), args);
+        } else {
+            Object result = uniqueValueFor(returnType);
+            given(loggerMethod.invoke(decoratedLogger, args)).willReturn(result);
+            assertEquals("result of " + loggerMethod, result, loggerMethod.invoke(richLogger, args));
         }
     }
 
