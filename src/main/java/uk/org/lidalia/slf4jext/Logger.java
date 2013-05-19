@@ -202,489 +202,306 @@ public class Logger implements org.slf4j.Logger {
 
     /* ALL OTHER METHODS SIMPLY DELEGATE TO THE SAME METHOD ON THE DECORATED LOGGER */
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public String getName() {
         return decorated.getName();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public boolean isTraceEnabled() {
         return decorated.isTraceEnabled();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void trace(final String msg) {
         decorated.trace(msg);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void trace(final String format, final Object arg) {
         decorated.trace(format, arg);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void trace(final String format, final Object arg1, final Object arg2) {
         decorated.trace(format, arg1, arg2);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void trace(final String format, final Object... arguments) {
         decorated.trace(format, arguments);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void trace(final String msg, final Throwable throwable) {
         decorated.trace(msg, throwable);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public boolean isTraceEnabled(final Marker marker) {
         return decorated.isTraceEnabled(marker);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void trace(final Marker marker, final String msg) {
         decorated.trace(marker, msg);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void trace(final Marker marker, final String format, final Object arg) {
         decorated.trace(marker, format, arg);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void trace(final Marker marker, final String format, final Object arg1, final Object arg2) {
         decorated.trace(marker, format, arg1, arg2);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void trace(final Marker marker, final String format, final Object... arguments) {
         decorated.trace(marker, format, arguments);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void trace(final Marker marker, final String msg, final Throwable throwable) {
         decorated.trace(marker, msg, throwable);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public boolean isDebugEnabled() {
         return decorated.isDebugEnabled();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void debug(final String msg) {
         decorated.debug(msg);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void debug(final String format, final Object arg) {
         decorated.debug(format, arg);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void debug(final String format, final Object arg1, final Object arg2) {
         decorated.debug(format, arg1, arg2);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void debug(final String format, final Object... arguments) {
         decorated.debug(format, arguments);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void debug(final String msg, final Throwable throwable) {
         decorated.debug(msg, throwable);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public boolean isDebugEnabled(final Marker marker) {
         return decorated.isDebugEnabled(marker);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void debug(final Marker marker, final String msg) {
         decorated.debug(marker, msg);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void debug(final Marker marker, final String format, final Object arg) {
         decorated.debug(marker, format, arg);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void debug(final Marker marker, final String format, final Object arg1, final Object arg2) {
         decorated.debug(marker, format, arg1, arg2);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void debug(final Marker marker, final String format, final Object... arguments) {
         decorated.debug(marker, format, arguments);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void debug(final Marker marker, final String msg, final Throwable throwable) {
         decorated.debug(marker, msg, throwable);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public boolean isInfoEnabled() {
         return decorated.isInfoEnabled();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void info(final String msg) {
         decorated.info(msg);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void info(final String format, final Object arg) {
         decorated.info(format, arg);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void info(final String format, final Object arg1, final Object arg2) {
         decorated.info(format, arg1, arg2);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void info(final String format, final Object... arguments) {
         decorated.info(format, arguments);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void info(final String msg, final Throwable throwable) {
         decorated.info(msg, throwable);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public boolean isInfoEnabled(final Marker marker) {
         return decorated.isInfoEnabled(marker);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void info(final Marker marker, final String msg) {
         decorated.info(marker, msg);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void info(final Marker marker, final String format, final Object arg) {
         decorated.info(marker, format, arg);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void info(final Marker marker, final String format, final Object arg1, final Object arg2) {
         decorated.info(marker, format, arg1, arg2);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void info(final Marker marker, final String format, final Object... arguments) {
         decorated.info(marker, format, arguments);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void info(final Marker marker, final String msg, final Throwable throwable) {
         decorated.info(marker, msg, throwable);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public boolean isWarnEnabled() {
         return decorated.isWarnEnabled();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void warn(final String msg) {
         decorated.warn(msg);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void warn(final String format, final Object arg) {
         decorated.warn(format, arg);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void warn(final String format, final Object... arguments) {
         decorated.warn(format, arguments);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void warn(final String format, final Object arg1, final Object arg2) {
         decorated.warn(format, arg1, arg2);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void warn(final String msg, final Throwable throwable) {
         decorated.warn(msg, throwable);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public boolean isWarnEnabled(final Marker marker) {
         return decorated.isWarnEnabled(marker);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void warn(final Marker marker, final String msg) {
         decorated.warn(marker, msg);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void warn(final Marker marker, final String format, final Object arg) {
         decorated.warn(marker, format, arg);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void warn(final Marker marker, final String format, final Object arg1, final Object arg2) {
         decorated.warn(marker, format, arg1, arg2);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void warn(final Marker marker, final String format, final Object... arguments) {
         decorated.warn(marker, format, arguments);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void warn(final Marker marker, final String msg, final Throwable throwable) {
         decorated.warn(marker, msg, throwable);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public boolean isErrorEnabled() {
         return decorated.isErrorEnabled();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void error(final String msg) {
         decorated.error(msg);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void error(final String format, final Object arg) {
         decorated.error(format, arg);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void error(final String format, final Object arg1, final Object arg2) {
         decorated.error(format, arg1, arg2);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void error(final String format, final Object... arguments) {
         decorated.error(format, arguments);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void error(final String msg, final Throwable throwable) {
         decorated.error(msg, throwable);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public boolean isErrorEnabled(final Marker marker) {
         return decorated.isErrorEnabled(marker);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void error(final Marker marker, final String msg) {
         decorated.error(marker, msg);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void error(final Marker marker, final String format, final Object arg) {
         decorated.error(marker, format, arg);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void error(final Marker marker, final String format, final Object arg1, final Object arg2) {
         decorated.error(marker, format, arg1, arg2);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void error(final Marker marker, final String format, final Object... arguments) {
         decorated.error(marker, format, arguments);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void error(final Marker marker, final String msg, final Throwable throwable) {
         decorated.error(marker, msg, throwable);
