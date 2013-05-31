@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Logger.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Lidalia Extensions to SLF4J</a> &gt; <a href="index.html" class="el_package">uk.org.lidalia.slf4jext</a> &gt; <span class="el_source">Logger.java</span></div><h1>Logger.java</h1><pre class="source lang-java linenums">package uk.org.lidalia.slf4jext;
+
+import org.slf4j.Marker;
+
+/**
+ * A decorator around an SLF4J {@link org.slf4j.Logger} that adds a set of methods called log that take an instance of Level as
+ * the first argument and delegate to the appropriate method on the SLF4J Logger (info for INFO, etc).
+ *
+ * All methods defined by the SLF4J {@link org.slf4j.Logger} interface delegate directly to the decorated SLF4J
+ * {@link org.slf4j.Logger}.
+ */
+@SuppressWarnings({ &quot;PMD.ExcessivePublicCount&quot;, &quot;PMD.TooManyMethods&quot; })
+public class Logger implements org.slf4j.Logger {
+
+    private final org.slf4j.Logger decorated;
+
+    /**
+     * Returns a new Logger that decorates the provided SLF4J {@link org.slf4j.Logger}.
+     *
+     * It is generally more convenient to call {@link LoggerFactory#getLogger(Class)} or {@link LoggerFactory#getLogger(String)}.
+     *
+     * @param decorated the SLF4J {@link org.slf4j.Logger} to which all logging calls will be delegated
+     */
+<span class="fc" id="L24">    public Logger(final org.slf4j.Logger decorated) {</span>
+<span class="fc" id="L25">        this.decorated = decorated;</span>
+<span class="fc" id="L26">    }</span>
+
+    /**
+     * Is the logger instance enabled for a given level?
+     *
+     * Delegates to the appropriate method for the level - for instance, if the provided level is {@link Level#DEBUG}, this
+     * method will delegate to {@link org.slf4j.Logger#isDebugEnabled()} on the decorated logger.
+     *
+     * @param level the level that may or may not be enabled
+     * @return True if this Logger is enabled for the given level,
+     *         false otherwise.
+     */
+    public boolean isEnabled(final Level level) {
+<span class="fc" id="L39">        return level.isEnabled(decorated);</span>
+    }
+
+    /**
+     * Delegates to the appropriate logging method for the level.
+     *
+     * For instance, if the provided level is {@link Level#DEBUG}, this method will delegate to
+     * {@link org.slf4j.Logger#debug(String)} on the decorated logger.
+     *
+     * @param level the level at which to log
+     * @param msg the message string to be logged
+     */
+    public void log(final Level level, final String msg) {
+<span class="fc" id="L52">        level.log(decorated, msg);</span>
+<span class="fc" id="L53">    }</span>
+
+    /**
+     * Delegates to the appropriate logging method for the level.
+     *
+     * For instance, if the provided level is {@link Level#DEBUG}, this method will delegate to
+     * {@link org.slf4j.Logger#debug(String, Object)} on the decorated logger.
+     *
+     * @param level the level at which to log
+     * @param format the format string
+     * @param arg the argument
+     */
+    public void log(final Level level, final String format, final Object arg) {
+<span class="fc" id="L66">        level.log(decorated, format, arg);</span>
+<span class="fc" id="L67">    }</span>
+
+    /**
+     * Delegates to the appropriate logging method for the level.
+     *
+     * For instance, if the provided level is {@link Level#DEBUG}, this method will delegate to
+     * {@link org.slf4j.Logger#debug(String, Object, Object)} on the decorated logger.
+     *
+     * @param level the level at which to log
+     * @param format the format string
+     * @param arg1 the first argument
+     * @param arg2 the second argument
+     */
+    public void log(final Level level, final String format, final Object arg1, final Object arg2) {
+<span class="fc" id="L81">        level.log(decorated, format, arg1, arg2);</span>
+<span class="fc" id="L82">    }</span>
+
+    /**
+     * Delegates to the appropriate logging method for the level.
+     *
+     * For instance, if the provided level is {@link Level#DEBUG}, this method will delegate to
+     * {@link org.slf4j.Logger#debug(String, Object...)} on the decorated logger.
+     *
+     * @param level the level at which to log
+     * @param format the format string
+     * @param arguments a list of 3 or more arguments
+     */
+    public void log(final Level level, final String format, final Object... arguments) {
+<span class="fc" id="L95">        level.log(decorated, format, arguments);</span>
+<span class="fc" id="L96">    }</span>
+
+    /**
+     * Delegates to the appropriate logging method for the level.
+     *
+     * For instance, if the provided level is {@link Level#DEBUG}, this method will delegate to
+     * {@link org.slf4j.Logger#debug(String, Throwable)} on the decorated logger.
+     *
+     * @param level the level at which to log
+     * @param msg the message string to be logged
+     * @param throwable the exception (throwable) to log
+     */
+    public void log(final Level level, final String msg, final Throwable throwable) {
+<span class="fc" id="L109">        level.log(decorated, msg, throwable);</span>
+<span class="fc" id="L110">    }</span>
+
+    /**
+     * Similar to {@link #isTraceEnabled()} method except that the
+     * marker data is also taken into account.
+     *
+     * Delegates to the appropriate method for the level - for instance, if the provided level is {@link Level#DEBUG}, this
+     * method will delegate to {@link org.slf4j.Logger#isDebugEnabled(Marker)} on the decorated logger.
+     *
+     * @param level the level that may or may not be enabled
+     * @param marker The marker data to take into consideration
+     * @return True if this Logger is enabled for the given level,
+     *         false otherwise.
+     */
+    public boolean isEnabled(final Level level, final Marker marker) {
+<span class="fc" id="L125">        return level.isEnabled(decorated, marker);</span>
+    }
+
+    /**
+     * Delegates to the appropriate logging method for the level.
+     *
+     * For instance, if the provided level is {@link Level#DEBUG}, this method will delegate to
+     * {@link org.slf4j.Logger#debug(Marker, String)} on the decorated logger.
+     *
+     * @param level the level at which to log
+     * @param marker The marker data to take into consideration
+     * @param msg the message string to be logged
+     */
+    public void log(final Level level, final Marker marker, final String msg) {
+<span class="fc" id="L139">        level.log(decorated, marker, msg);</span>
+<span class="fc" id="L140">    }</span>
+
+    /**
+     * Delegates to the appropriate logging method for the level.
+     *
+     * For instance, if the provided level is {@link Level#DEBUG}, this method will delegate to
+     * {@link org.slf4j.Logger#debug(String, Object)} on the decorated logger.
+     *
+     * @param level the level at which to log
+     * @param marker The marker data to take into consideration
+     * @param format the format string
+     * @param arg the argument
+     */
+    public void log(final Level level, final Marker marker, final String format, final Object arg) {
+<span class="fc" id="L154">        level.log(decorated, marker, format, arg);</span>
+<span class="fc" id="L155">    }</span>
+
+    /**
+     * Delegates to the appropriate logging method for the level.
+     *
+     * For instance, if the provided level is {@link Level#DEBUG}, this method will delegate to
+     * {@link org.slf4j.Logger#debug(String, Object, Object)} on the decorated logger.
+     *
+     * @param level the level at which to log
+     * @param marker The marker data to take into consideration
+     * @param format the format string
+     * @param arg1 the first argument
+     * @param arg2 the second argument
+     */
+    public void log(final Level level, final Marker marker, final String format, final Object arg1, final Object arg2) {
+<span class="fc" id="L170">        level.log(decorated, marker, format, arg1, arg2);</span>
+<span class="fc" id="L171">    }</span>
+
+    /**
+     * Delegates to the appropriate logging method for the level.
+     *
+     * For instance, if the provided level is {@link Level#DEBUG}, this method will delegate to
+     * {@link org.slf4j.Logger#debug(String, Object...)} on the decorated logger.
+     *
+     * @param level the level at which to log
+     * @param marker The marker data to take into consideration
+     * @param format the format string
+     * @param arguments a list of 3 or more arguments
+     */
+    public void log(final Level level, final Marker marker, final String format, final Object... arguments) {
+<span class="fc" id="L185">        level.log(decorated, marker, format, arguments);</span>
+<span class="fc" id="L186">    }</span>
+
+    /**
+     * Delegates to the appropriate logging method for the level.
+     *
+     * For instance, if the provided level is {@link Level#DEBUG}, this method will delegate to
+     * {@link org.slf4j.Logger#debug(String, Throwable)} on the decorated logger.
+     *
+     * @param level the level at which to log
+     * @param marker The marker data to take into consideration
+     * @param msg the message string to be logged
+     * @param throwable the exception (throwable) to log
+     */
+    public void log(final Level level, final Marker marker, final String msg, final Throwable throwable) {
+<span class="fc" id="L200">        level.log(decorated, marker, msg, throwable);</span>
+<span class="fc" id="L201">    }</span>
+
+    /* ALL OTHER METHODS SIMPLY DELEGATE TO THE SAME METHOD ON THE DECORATED LOGGER */
+
+    @Override
+    public String getName() {
+<span class="fc" id="L207">        return decorated.getName();</span>
+    }
+
+    @Override
+    public boolean isTraceEnabled() {
+<span class="fc" id="L212">        return decorated.isTraceEnabled();</span>
+    }
+
+    @Override
+    public void trace(final String msg) {
+<span class="fc" id="L217">        decorated.trace(msg);</span>
+<span class="fc" id="L218">    }</span>
+
+    @Override
+    public void trace(final String format, final Object arg) {
+<span class="fc" id="L222">        decorated.trace(format, arg);</span>
+<span class="fc" id="L223">    }</span>
+
+    @Override
+    public void trace(final String format, final Object arg1, final Object arg2) {
+<span class="fc" id="L227">        decorated.trace(format, arg1, arg2);</span>
+<span class="fc" id="L228">    }</span>
+
+    @Override
+    public void trace(final String format, final Object... arguments) {
+<span class="fc" id="L232">        decorated.trace(format, arguments);</span>
+<span class="fc" id="L233">    }</span>
+
+    @Override
+    public void trace(final String msg, final Throwable throwable) {
+<span class="fc" id="L237">        decorated.trace(msg, throwable);</span>
+<span class="fc" id="L238">    }</span>
+
+    @Override
+    public boolean isTraceEnabled(final Marker marker) {
+<span class="fc" id="L242">        return decorated.isTraceEnabled(marker);</span>
+    }
+
+    @Override
+    public void trace(final Marker marker, final String msg) {
+<span class="fc" id="L247">        decorated.trace(marker, msg);</span>
+<span class="fc" id="L248">    }</span>
+
+    @Override
+    public void trace(final Marker marker, final String format, final Object arg) {
+<span class="fc" id="L252">        decorated.trace(marker, format, arg);</span>
+<span class="fc" id="L253">    }</span>
+
+    @Override
+    public void trace(final Marker marker, final String format, final Object arg1, final Object arg2) {
+<span class="fc" id="L257">        decorated.trace(marker, format, arg1, arg2);</span>
+<span class="fc" id="L258">    }</span>
+
+    @Override
+    public void trace(final Marker marker, final String format, final Object... arguments) {
+<span class="fc" id="L262">        decorated.trace(marker, format, arguments);</span>
+<span class="fc" id="L263">    }</span>
+
+    @Override
+    public void trace(final Marker marker, final String msg, final Throwable throwable) {
+<span class="fc" id="L267">        decorated.trace(marker, msg, throwable);</span>
+<span class="fc" id="L268">    }</span>
+
+    @Override
+    public boolean isDebugEnabled() {
+<span class="fc" id="L272">        return decorated.isDebugEnabled();</span>
+    }
+
+    @Override
+    public void debug(final String msg) {
+<span class="fc" id="L277">        decorated.debug(msg);</span>
+<span class="fc" id="L278">    }</span>
+
+    @Override
+    public void debug(final String format, final Object arg) {
+<span class="fc" id="L282">        decorated.debug(format, arg);</span>
+<span class="fc" id="L283">    }</span>
+
+    @Override
+    public void debug(final String format, final Object arg1, final Object arg2) {
+<span class="fc" id="L287">        decorated.debug(format, arg1, arg2);</span>
+<span class="fc" id="L288">    }</span>
+
+    @Override
+    public void debug(final String format, final Object... arguments) {
+<span class="fc" id="L292">        decorated.debug(format, arguments);</span>
+<span class="fc" id="L293">    }</span>
+
+    @Override
+    public void debug(final String msg, final Throwable throwable) {
+<span class="fc" id="L297">        decorated.debug(msg, throwable);</span>
+<span class="fc" id="L298">    }</span>
+
+    @Override
+    public boolean isDebugEnabled(final Marker marker) {
+<span class="fc" id="L302">        return decorated.isDebugEnabled(marker);</span>
+    }
+
+    @Override
+    public void debug(final Marker marker, final String msg) {
+<span class="fc" id="L307">        decorated.debug(marker, msg);</span>
+<span class="fc" id="L308">    }</span>
+
+    @Override
+    public void debug(final Marker marker, final String format, final Object arg) {
+<span class="fc" id="L312">        decorated.debug(marker, format, arg);</span>
+<span class="fc" id="L313">    }</span>
+
+    @Override
+    public void debug(final Marker marker, final String format, final Object arg1, final Object arg2) {
+<span class="fc" id="L317">        decorated.debug(marker, format, arg1, arg2);</span>
+<span class="fc" id="L318">    }</span>
+
+    @Override
+    public void debug(final Marker marker, final String format, final Object... arguments) {
+<span class="fc" id="L322">        decorated.debug(marker, format, arguments);</span>
+<span class="fc" id="L323">    }</span>
+
+    @Override
+    public void debug(final Marker marker, final String msg, final Throwable throwable) {
+<span class="fc" id="L327">        decorated.debug(marker, msg, throwable);</span>
+<span class="fc" id="L328">    }</span>
+
+    @Override
+    public boolean isInfoEnabled() {
+<span class="fc" id="L332">        return decorated.isInfoEnabled();</span>
+    }
+
+    @Override
+    public void info(final String msg) {
+<span class="fc" id="L337">        decorated.info(msg);</span>
+<span class="fc" id="L338">    }</span>
+
+    @Override
+    public void info(final String format, final Object arg) {
+<span class="fc" id="L342">        decorated.info(format, arg);</span>
+<span class="fc" id="L343">    }</span>
+
+    @Override
+    public void info(final String format, final Object arg1, final Object arg2) {
+<span class="fc" id="L347">        decorated.info(format, arg1, arg2);</span>
+<span class="fc" id="L348">    }</span>
+
+    @Override
+    public void info(final String format, final Object... arguments) {
+<span class="fc" id="L352">        decorated.info(format, arguments);</span>
+<span class="fc" id="L353">    }</span>
+
+    @Override
+    public void info(final String msg, final Throwable throwable) {
+<span class="fc" id="L357">        decorated.info(msg, throwable);</span>
+<span class="fc" id="L358">    }</span>
+
+    @Override
+    public boolean isInfoEnabled(final Marker marker) {
+<span class="fc" id="L362">        return decorated.isInfoEnabled(marker);</span>
+    }
+
+    @Override
+    public void info(final Marker marker, final String msg) {
+<span class="fc" id="L367">        decorated.info(marker, msg);</span>
+<span class="fc" id="L368">    }</span>
+
+    @Override
+    public void info(final Marker marker, final String format, final Object arg) {
+<span class="fc" id="L372">        decorated.info(marker, format, arg);</span>
+<span class="fc" id="L373">    }</span>
+
+    @Override
+    public void info(final Marker marker, final String format, final Object arg1, final Object arg2) {
+<span class="fc" id="L377">        decorated.info(marker, format, arg1, arg2);</span>
+<span class="fc" id="L378">    }</span>
+
+    @Override
+    public void info(final Marker marker, final String format, final Object... arguments) {
+<span class="fc" id="L382">        decorated.info(marker, format, arguments);</span>
+<span class="fc" id="L383">    }</span>
+
+    @Override
+    public void info(final Marker marker, final String msg, final Throwable throwable) {
+<span class="fc" id="L387">        decorated.info(marker, msg, throwable);</span>
+<span class="fc" id="L388">    }</span>
+
+    @Override
+    public boolean isWarnEnabled() {
+<span class="fc" id="L392">        return decorated.isWarnEnabled();</span>
+    }
+
+    @Override
+    public void warn(final String msg) {
+<span class="fc" id="L397">        decorated.warn(msg);</span>
+<span class="fc" id="L398">    }</span>
+
+    @Override
+    public void warn(final String format, final Object arg) {
+<span class="fc" id="L402">        decorated.warn(format, arg);</span>
+<span class="fc" id="L403">    }</span>
+
+    @Override
+    public void warn(final String format, final Object... arguments) {
+<span class="fc" id="L407">        decorated.warn(format, arguments);</span>
+<span class="fc" id="L408">    }</span>
+
+    @Override
+    public void warn(final String format, final Object arg1, final Object arg2) {
+<span class="fc" id="L412">        decorated.warn(format, arg1, arg2);</span>
+<span class="fc" id="L413">    }</span>
+
+    @Override
+    public void warn(final String msg, final Throwable throwable) {
+<span class="fc" id="L417">        decorated.warn(msg, throwable);</span>
+<span class="fc" id="L418">    }</span>
+
+    @Override
+    public boolean isWarnEnabled(final Marker marker) {
+<span class="fc" id="L422">        return decorated.isWarnEnabled(marker);</span>
+    }
+
+    @Override
+    public void warn(final Marker marker, final String msg) {
+<span class="fc" id="L427">        decorated.warn(marker, msg);</span>
+<span class="fc" id="L428">    }</span>
+
+    @Override
+    public void warn(final Marker marker, final String format, final Object arg) {
+<span class="fc" id="L432">        decorated.warn(marker, format, arg);</span>
+<span class="fc" id="L433">    }</span>
+
+    @Override
+    public void warn(final Marker marker, final String format, final Object arg1, final Object arg2) {
+<span class="fc" id="L437">        decorated.warn(marker, format, arg1, arg2);</span>
+<span class="fc" id="L438">    }</span>
+
+    @Override
+    public void warn(final Marker marker, final String format, final Object... arguments) {
+<span class="fc" id="L442">        decorated.warn(marker, format, arguments);</span>
+<span class="fc" id="L443">    }</span>
+
+    @Override
+    public void warn(final Marker marker, final String msg, final Throwable throwable) {
+<span class="fc" id="L447">        decorated.warn(marker, msg, throwable);</span>
+<span class="fc" id="L448">    }</span>
+
+    @Override
+    public boolean isErrorEnabled() {
+<span class="fc" id="L452">        return decorated.isErrorEnabled();</span>
+    }
+
+    @Override
+    public void error(final String msg) {
+<span class="fc" id="L457">        decorated.error(msg);</span>
+<span class="fc" id="L458">    }</span>
+
+    @Override
+    public void error(final String format, final Object arg) {
+<span class="fc" id="L462">        decorated.error(format, arg);</span>
+<span class="fc" id="L463">    }</span>
+
+    @Override
+    public void error(final String format, final Object arg1, final Object arg2) {
+<span class="fc" id="L467">        decorated.error(format, arg1, arg2);</span>
+<span class="fc" id="L468">    }</span>
+
+    @Override
+    public void error(final String format, final Object... arguments) {
+<span class="fc" id="L472">        decorated.error(format, arguments);</span>
+<span class="fc" id="L473">    }</span>
+
+    @Override
+    public void error(final String msg, final Throwable throwable) {
+<span class="fc" id="L477">        decorated.error(msg, throwable);</span>
+<span class="fc" id="L478">    }</span>
+
+    @Override
+    public boolean isErrorEnabled(final Marker marker) {
+<span class="fc" id="L482">        return decorated.isErrorEnabled(marker);</span>
+    }
+
+    @Override
+    public void error(final Marker marker, final String msg) {
+<span class="fc" id="L487">        decorated.error(marker, msg);</span>
+<span class="fc" id="L488">    }</span>
+
+    @Override
+    public void error(final Marker marker, final String format, final Object arg) {
+<span class="fc" id="L492">        decorated.error(marker, format, arg);</span>
+<span class="fc" id="L493">    }</span>
+
+    @Override
+    public void error(final Marker marker, final String format, final Object arg1, final Object arg2) {
+<span class="fc" id="L497">        decorated.error(marker, format, arg1, arg2);</span>
+<span class="fc" id="L498">    }</span>
+
+    @Override
+    public void error(final Marker marker, final String format, final Object... arguments) {
+<span class="fc" id="L502">        decorated.error(marker, format, arguments);</span>
+<span class="fc" id="L503">    }</span>
+
+    @Override
+    public void error(final Marker marker, final String msg, final Throwable throwable) {
+<span class="fc" id="L507">        decorated.error(marker, msg, throwable);</span>
+<span class="fc" id="L508">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.6.2.201302030002</span></div></body></html>
