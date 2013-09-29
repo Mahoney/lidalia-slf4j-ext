@@ -1,21 +1,19 @@
 package uk.org.lidalia.slf4jutils;
 
-import java.util.Set;
-
-import org.junit.Test;
-
-import com.google.common.collect.ImmutableSet;
-
-import uk.org.lidalia.slf4jext.Level;
-
-import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import static uk.org.lidalia.slf4jext.Level.DEBUG;
 import static uk.org.lidalia.slf4jext.Level.ERROR;
 import static uk.org.lidalia.slf4jext.Level.INFO;
 import static uk.org.lidalia.slf4jext.Level.TRACE;
 import static uk.org.lidalia.slf4jext.Level.WARN;
+
+import java.util.EnumSet;
+import java.util.Set;
+
+import org.junit.Test;
+
+import uk.org.lidalia.slf4jext.Level;
 
 public class LevelTests {
 
@@ -32,7 +30,7 @@ public class LevelTests {
 
     @Test
     public void enablableValueSetContains() {
-        assertThat(Level.enablableValueSet(), is(ImmutableSet.of(ERROR, WARN, INFO, DEBUG, TRACE)));
+        assertTrue(Level.enablableValueSet().equals(EnumSet.of(ERROR, WARN, INFO, DEBUG, TRACE)));
     }
 
     @Test(expected = UnsupportedOperationException.class)

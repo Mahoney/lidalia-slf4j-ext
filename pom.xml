@@ -41,10 +41,6 @@
       <artifactId>slf4j-nop</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.google.guava</groupId>
-      <artifactId>guava</artifactId>
-    </dependency>
-    <dependency>
       <groupId>${project.parent.groupId}</groupId>
       <artifactId>standard-test-dependencies</artifactId>
       <version>${project.parent.version}</version>
