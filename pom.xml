@@ -6,11 +6,11 @@
   <parent>
     <groupId>uk.org.lidalia</groupId>
     <artifactId>opensource-single-module-project</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.0-jdk6</version>
   </parent>
 
   <artifactId>lidalia-slf4j-ext</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.0-jdk6</version>
 
   <name>Lidalia Extensions to SLF4J</name>
   <description>A wrapper for an SLF4J Logger that includes methods allowing logging to
@@ -54,7 +54,7 @@
     <dependency>
       <groupId>uk.org.lidalia</groupId>
       <artifactId>lidalia-test</artifactId>
-      <version>1.0.0</version>
+      <version>1.0.0-jdk6</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
