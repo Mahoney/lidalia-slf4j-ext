@@ -10,7 +10,7 @@
   </parent>
 
   <artifactId>lidalia-slf4j-ext</artifactId>
-  <version>1.0.0-jdk6</version>
+  <version>1.0.0-jdk6-SNAPSHOT</version>
 
   <name>Lidalia Extensions to SLF4J</name>
   <description>A wrapper for an SLF4J Logger that includes methods allowing logging to
