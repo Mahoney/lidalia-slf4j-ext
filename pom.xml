@@ -10,7 +10,7 @@
   </parent>
 
   <artifactId>lidalia-slf4j-ext</artifactId>
-  <version>1.0.0-jdk6-SNAPSHOT</version>
+  <version>1.0.0-jdk6</version>
 
   <name>Lidalia Extensions to SLF4J</name>
   <description>A wrapper for an SLF4J Logger that includes methods allowing logging to
@@ -21,7 +21,7 @@
     <url>https://github.com/Mahoney/${project.artifactId}</url>
     <connection>scm:git:git@github.com:Mahoney/${project.artifactId}.git</connection>
     <developerConnection>scm:git:git@github.com:Mahoney/${project.artifactId}.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>lidalia-slf4j-ext-1.0.0-jdk6</tag>
   </scm>
 
   <dependencies>
