@@ -1,14 +1,11 @@
 package uk.org.lidalia.slf4jext;
 
-import com.google.common.collect.ImmutableSet;
+import java.util.Collections;
+import java.util.EnumSet;
+import java.util.Set;
+
 import org.slf4j.Logger;
 import org.slf4j.Marker;
-
-import java.util.HashSet;
-
-import static com.google.common.collect.Sets.immutableEnumSet;
-import static com.google.common.collect.Sets.newHashSet;
-import static java.util.Arrays.asList;
 
 /**
  * Enum modelling the logical levels implied by the way <a href="http://www.slf4j.org">SLF4J</a> has the same set of methods
@@ -321,8 +318,8 @@ public enum Level {
         }
     };
 
-    private static final ImmutableSet<Level> ALL_LEVELS = immutableEnumSet(asList(values()));
-    private static final ImmutableSet<Level> ENABLABLE_LEVELS = makeEnablabeValues();
+    private static final Set<Level> ALL_LEVELS = Collections.unmodifiableSet(EnumSet.allOf(Level.class));
+    private static final Set<Level> ENABLABLE_LEVELS = Collections.unmodifiableSet(makeEnablabeValues());
 
     abstract boolean isEnabled(Logger logger);
 
@@ -351,20 +348,20 @@ public enum Level {
     /**
      * @return an ImmutableSet containing the constants of this enum type
      */
-    public static ImmutableSet<Level> valueSet() {
+    public static Set<Level> valueSet() {
         return ALL_LEVELS;
     }
 
     /**
      * @return an ImmutableSet containing the constants of this enum type other than OFF
      */
-    public static ImmutableSet<Level> enablableValueSet() {
+    public static Set<Level> enablableValueSet() {
         return ENABLABLE_LEVELS;
     }
 
-    private static ImmutableSet<Level> makeEnablabeValues() {
-        final HashSet<Level> levels = newHashSet(values());
-        levels.remove(OFF);
-        return immutableEnumSet(levels);
+    private static Set<Level> makeEnablabeValues() {
+        EnumSet<Level> enabled = EnumSet.allOf(Level.class);
+        enabled.remove(OFF);
+        return enabled;
     }
 }
