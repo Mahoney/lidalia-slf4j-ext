@@ -2,12 +2,14 @@ package uk.org.lidalia.slf4jext;
 
 import org.slf4j.Marker;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 public class LightestLoggerToLightLoggerAdapter implements LightLogger {
 
     private final LightestLogger decorated;
 
     public LightestLoggerToLightLoggerAdapter(LightestLogger decorated) {
-        this.decorated = decorated;
+        this.decorated = checkNotNull(decorated);
     }
 
     @Override

@@ -2,6 +2,10 @@ package uk.org.lidalia.slf4jext;
 
 import org.slf4j.Marker;
 
+/**
+ * An interface providing the bare minimum logic required in order to implement
+ * an {@link org.slf4j.Logger} using an {@link ConvenientLogger}.
+ */
 public interface LightestLogger {
 
     /**

@@ -2,12 +2,18 @@ package uk.org.lidalia.slf4jext;
 
 import org.slf4j.Marker;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import static uk.org.lidalia.slf4jext.Level.DEBUG;
 import static uk.org.lidalia.slf4jext.Level.ERROR;
 import static uk.org.lidalia.slf4jext.Level.INFO;
 import static uk.org.lidalia.slf4jext.Level.TRACE;
 import static uk.org.lidalia.slf4jext.Level.WARN;
 
+/**
+ * A class that gives a full implementation of the {@link org.slf4j.Logger}
+ * interface based on delegates that require far fewer methods to be
+ * implemented, reducing the amount of work needed to
+ */
 @SuppressWarnings({ "PMD.ExcessivePublicCount", "PMD.TooManyMethods" })
 public class ConvenientLogger implements org.slf4j.Logger {
 
@@ -18,7 +24,7 @@ public class ConvenientLogger implements org.slf4j.Logger {
     }
 
     public ConvenientLogger(final LightLogger decorated) {
-        this.decorated = decorated;
+        this.decorated = checkNotNull(decorated);
     }
 
     @Override

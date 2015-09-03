@@ -2,6 +2,9 @@ package uk.org.lidalia.slf4jext;
 
 import org.slf4j.Marker;
 
+/**
+ *
+ */
 public interface LightLogger extends LightestLogger {
 
     /**

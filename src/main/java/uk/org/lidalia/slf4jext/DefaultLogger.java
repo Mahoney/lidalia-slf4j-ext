@@ -2,6 +2,8 @@ package uk.org.lidalia.slf4jext;
 
 import org.slf4j.Marker;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 /**
  * A decorator around an SLF4J {@link org.slf4j.Logger} that adds a set of methods called log that take an instance of Level as
  * the first argument and delegate to the appropriate method on the SLF4J Logger (info for INFO, etc).
@@ -27,7 +29,7 @@ public class DefaultLogger extends ConvenientLogger implements Logger {
 
     public DefaultLogger(final LightLogger decorated) {
         super(decorated);
-        this.decorated = decorated;
+        this.decorated = checkNotNull(decorated);
     }
 
     public DefaultLogger(final LightestLogger decorated) {
