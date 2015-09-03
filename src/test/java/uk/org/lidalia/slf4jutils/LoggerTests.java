@@ -12,6 +12,7 @@ import org.slf4j.Marker;
 import java.lang.reflect.Method;
 import java.util.List;
 
+import uk.org.lidalia.slf4jext.DefaultLogger;
 import uk.org.lidalia.slf4jext.Logger;
 
 import static java.util.Arrays.asList;
@@ -35,7 +36,7 @@ import static uk.org.lidalia.test.Values.uniqueValueFor;
 public class LoggerTests {
 
     org.slf4j.Logger decoratedLogger = mock(org.slf4j.Logger.class);
-    Logger richLogger = new Logger(decoratedLogger);
+    Logger richLogger = new DefaultLogger(decoratedLogger);
 
     Marker marker = mock(Marker.class);
     String message = "message";

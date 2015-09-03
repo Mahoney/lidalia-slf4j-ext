@@ -16,7 +16,7 @@ public final class LoggerFactory {
      * @return logger
      */
     public static Logger getLogger(final Class<?> aClass) {
-        return new Logger(org.slf4j.LoggerFactory.getLogger(aClass));
+        return new DefaultLogger(org.slf4j.LoggerFactory.getLogger(aClass));
     }
 
     /**
@@ -27,7 +27,7 @@ public final class LoggerFactory {
      * @return logger
      */
     public static Logger getLogger(final String loggerName) {
-        return new Logger(org.slf4j.LoggerFactory.getLogger(loggerName));
+        return new DefaultLogger(org.slf4j.LoggerFactory.getLogger(loggerName));
     }
 
     private LoggerFactory() {

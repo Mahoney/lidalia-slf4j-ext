@@ -10,7 +10,7 @@ import org.slf4j.Marker;
  * {@link org.slf4j.Logger}.
  */
 @SuppressWarnings({ "PMD.ExcessivePublicCount", "PMD.TooManyMethods" })
-public class Logger extends ConvenientLogger implements ILogger {
+public class DefaultLogger extends ConvenientLogger implements Logger {
 
     private final LightLogger decorated;
 
@@ -21,16 +21,16 @@ public class Logger extends ConvenientLogger implements ILogger {
      *
      * @param decorated the SLF4J {@link org.slf4j.Logger} to which all logging calls will be delegated
      */
-    public Logger(final org.slf4j.Logger decorated) {
+    public DefaultLogger(final org.slf4j.Logger decorated) {
         this(new DefaultLightLogger(decorated));
     }
 
-    public Logger(final LightLogger decorated) {
+    public DefaultLogger(final LightLogger decorated) {
         super(decorated);
         this.decorated = decorated;
     }
 
-    public Logger(final LightestLogger decorated) {
+    public DefaultLogger(final LightestLogger decorated) {
         this(new LightestLoggerToLightLoggerAdapter(decorated));
     }
 
