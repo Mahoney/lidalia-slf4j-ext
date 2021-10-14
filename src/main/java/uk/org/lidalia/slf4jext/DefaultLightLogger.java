@@ -1,8 +1,8 @@
 package uk.org.lidalia.slf4jext;
 
-import org.slf4j.Marker;
+import static java.util.Objects.requireNonNull;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import org.slf4j.Marker;
 
 public class DefaultLightLogger implements LightLogger {
 
@@ -16,7 +16,7 @@ public class DefaultLightLogger implements LightLogger {
      * @param decorated the SLF4J {@link org.slf4j.Logger} to which all logging calls will be delegated
      */
     public DefaultLightLogger(final org.slf4j.Logger decorated) {
-        this.decorated = checkNotNull(decorated);
+        this.decorated = requireNonNull(decorated);
     }
 
     @Override
