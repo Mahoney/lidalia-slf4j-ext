@@ -1,26 +1,9 @@
 package uk.org.lidalia.slf4jutils;
 
-import com.google.common.base.Function;
-import com.google.common.collect.Lists;
-import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
-
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.slf4j.Marker;
-
-import java.lang.reflect.Method;
-import java.util.List;
-
-import uk.org.lidalia.slf4jext.DefaultLogger;
-import uk.org.lidalia.slf4jext.Logger;
-
-import static java.util.Arrays.asList;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.powermock.api.mockito.PowerMockito.mock;
@@ -31,6 +14,18 @@ import static uk.org.lidalia.slf4jext.Level.OFF;
 import static uk.org.lidalia.slf4jext.Level.TRACE;
 import static uk.org.lidalia.slf4jext.Level.WARN;
 import static uk.org.lidalia.test.Values.uniqueValueFor;
+
+import java.lang.reflect.Method;
+
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.slf4j.Marker;
+
+import uk.org.lidalia.slf4jext.DefaultLogger;
+import uk.org.lidalia.slf4jext.Logger;
 
 @RunWith(JUnitParamsRunner.class)
 public class LoggerTests {
@@ -586,11 +581,10 @@ public class LoggerTests {
 
     private Object[] buildParamsFor(Method loggerMethod) throws Exception {
         Class<?>[] parameterTypes = loggerMethod.getParameterTypes();
-        List<Object> params = Lists.transform(asList(parameterTypes), new Function<Class<?>, Object>() {
-            public Object apply(Class<?> aClass) {
-                return uniqueValueFor(aClass);
-            }
-        });
-        return params.toArray();
+        Object[] uniqueValues = new Object[parameterTypes.length];
+        for (int i = 0; i < uniqueValues.length; i++) {
+            uniqueValues[i] = uniqueValueFor(parameterTypes[i]);
+        }
+        return uniqueValues;
     }
 }
