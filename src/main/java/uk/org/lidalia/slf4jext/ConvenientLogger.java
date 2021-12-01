@@ -2,7 +2,7 @@ package uk.org.lidalia.slf4jext;
 
 import org.slf4j.Marker;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import static java.util.Objects.requireNonNull;
 import static uk.org.lidalia.slf4jext.Level.DEBUG;
 import static uk.org.lidalia.slf4jext.Level.ERROR;
 import static uk.org.lidalia.slf4jext.Level.INFO;
@@ -24,7 +24,7 @@ public class ConvenientLogger implements org.slf4j.Logger {
     }
 
     public ConvenientLogger(final LightLogger decorated) {
-        this.decorated = checkNotNull(decorated);
+        this.decorated = requireNonNull(decorated);
     }
 
     @Override

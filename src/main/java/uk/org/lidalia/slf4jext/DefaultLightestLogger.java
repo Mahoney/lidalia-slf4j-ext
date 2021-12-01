@@ -2,14 +2,14 @@ package uk.org.lidalia.slf4jext;
 
 import org.slf4j.Marker;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import static java.util.Objects.requireNonNull;
 
 public class DefaultLightestLogger implements LightestLogger {
 
     private final org.slf4j.Logger logger;
 
     public DefaultLightestLogger(org.slf4j.Logger logger) {
-        this.logger = checkNotNull(logger);
+        this.logger = requireNonNull(logger);
     }
 
     @Override
